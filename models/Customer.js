@@ -1,5 +1,5 @@
 import mongoose, { Mongoose } from "mongoose";
-const Schema = Mongoose.Schema()
+const Schema = mongoose.Schema;
 
 const customerSchema = new Schema({
     customerFirstname: {
@@ -10,4 +10,8 @@ const customerSchema = new Schema({
         type: String,
         required: false
     }
-})
+});
+
+const Customer = mongoose.model("Customer", customerSchema);
+
+export default Customer;

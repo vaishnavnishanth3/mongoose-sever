@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import Customer from "./models/Customer.js";
 
 dotenv.config();
 
@@ -24,6 +25,22 @@ const connection = mongoose.connection;
 
 connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
+})
+
+app.post('/customer', async(req, res) => {
+    try{
+        const body = req.body;
+        console.log(body);
+        const customer = new Customer({
+            customerFirstName: req.body.customerFirstName,
+            customerLastName: req.body.customerLastName
+        });
+        await Customer.create(customer);
+        
+    } catch(error) {
+        console.log(error);
+
+    }
 })
 
 app.listen(port, () => {
