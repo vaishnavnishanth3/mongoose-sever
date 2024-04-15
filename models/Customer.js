@@ -1,12 +1,12 @@
-import mongoose, { Mongoose } from "mongoose";
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const customerSchema = new Schema({
-    customerFirstname: {
+    customerFirstName: {
         type: String,
         required: true
     },
-    customerLastname: {
+    customerLastName: {
         type: String,
         required: false
     }

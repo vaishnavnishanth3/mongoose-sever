@@ -9,7 +9,7 @@ dotenv.config();
 const connectionString = process.env.MONGODB_CONNECTION_STRING;
 
 const app = express()
-const port = 3001;
+const port = 3001
 
 app.use(express.json())
 app.use(cors())
@@ -29,17 +29,15 @@ connection.once('open', () => {
 
 app.post('/customer', async(req, res) => {
     try{
-        const body = req.body;
-        console.log(body);
-        const customer = new Customer({
+        console.log("req.body: "+req.body)
+        const newCustomer = new Customer({
             customerFirstName: req.body.customerFirstName,
             customerLastName: req.body.customerLastName
         });
-        await Customer.create(customer);
-        
+        await Customer.create(newCustomer);
+        res.send("Customer Added!")
     } catch(error) {
         console.log(error);
-
     }
 })
 
